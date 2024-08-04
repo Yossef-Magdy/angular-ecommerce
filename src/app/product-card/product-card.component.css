@@ -1,0 +1,23 @@
+.card {
+    cursor: pointer;
+}
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+.card-price::before {
+    content: "$";
+}
+
+.stock {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+}
+.card-title, .card-subtitle {
+    white-space: nowrap;
+    max-width: max-content;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

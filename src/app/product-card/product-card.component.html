@@ -1,0 +1,17 @@
+<div class="card" (click)="sendId(data.id)">
+    @if (data.stock > 0) {
+        <span class="badge rounded-pill stock bg-success">in stock</span>
+    } @else {
+        <span class="badge rounded-pill stock bg-danger">out of stock</span>
+    }
+    <img src="{{data.thumbnail}}" class="card-img-top" alt="">
+    <div class="card-body">
+        <div class="wrapper">
+            <h5 class="card-title" title="{{data.title}}" >{{data.title}}</h5>
+            <h5 class="card-price">{{data.price}}</h5>
+        </div>
+        <p class="card-subtitle mb-2 text-muted" title="{{data.description}}">{{data.description}}</p>
+        <p>rating: {{data.rating}}</p>
+        <button class="btn border border-dark rounded-pill">Add to Cart</button>
+    </div>
+</div>
