@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 export class RegisterPageComponent {
   registerForm: FormGroup;
   constructor() {
-    const usernameRegExp: RegExp = new RegExp("^[a-zA-Z]+(a-zA-Z0-9)*$");
+    const usernameRegExp: RegExp = new RegExp("^[a-zA-Z][a-zA-Z0-9]+[^ ]$");
     this.registerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.email, Validators.required]),
