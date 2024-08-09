@@ -1,0 +1,63 @@
+.big-img {
+    width: 100%;
+    height: 400px;
+}
+
+
+.small-img {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 0.5rem;
+}
+.small-img > img {
+    width: 25%;
+    height: 140px;
+}
+
+.price::before {
+    content: "$";
+}
+
+.qty-control {
+    display: inline-flex;
+}
+.qty-control span {
+    padding: 0.5rem 1rem;
+}
+.qty-control button:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+.qty-control button:last-child {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.price-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+}
+
+.rating-wrapper {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.orange {
+    color: #fd7e14;
+}
+
+.info-list {
+    list-style-position: inside;
+}
+
+
+a {
+    cursor: pointer;
+}
