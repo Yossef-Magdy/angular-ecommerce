@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +9,7 @@ import { CartService } from '../../services/cart.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(private cartService: CartService){}
+  constructor(){}
   ngOnInit() {
 
   }

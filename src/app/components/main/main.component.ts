@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { Product } from '../../interface/product';
 import { ProductRequestService } from '../../services/product-request.service';
-import { CartService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -16,7 +15,7 @@ export class MainComponent {
   productList: Product[] = [];
   productSub!: Subscription;
   cartSub!: Subscription;
-  constructor(private productService: ProductRequestService, private cartService: CartService) {}
+  constructor(private productService: ProductRequestService) {}
 
   ngOnInit(){
     this.productSub = this.productService.getProductList().subscribe((data: any) => this.productList = data.products);
