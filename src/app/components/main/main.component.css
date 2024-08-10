@@ -5,5 +5,9 @@
 }
 .hero {
     height: 25rem;
-    /* padding: 2rem 4rem; */
+}
+.spinner {
+    grid-column-start: span 5;
+    display: flex;
+    justify-content: center;
 }

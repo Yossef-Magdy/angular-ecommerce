@@ -13,3 +13,12 @@ li {
     color: var(--bs-blue);
     font-weight: 500;
 }
+
+@media (max-width: 576px) {
+    nav {
+        justify-content: center;
+    }
+    ul {
+        gap: 1rem;
+    }
+}
