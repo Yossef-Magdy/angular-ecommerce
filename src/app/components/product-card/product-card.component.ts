@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Product } from '../../interface/product';
 import { Router } from '@angular/router';
 import { StarsComponent } from '../stars/stars.component';
@@ -14,6 +14,7 @@ export class ProductCardComponent {
   @Input() data!: Product;
   @ViewChild('favoriteIcon') favoriteIconView: any;
   isFavorite: boolean = false;
+  
   constructor (private router: Router) {}
 
   sendId(id: number) {

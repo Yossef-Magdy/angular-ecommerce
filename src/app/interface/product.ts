@@ -1,4 +1,3 @@
-import { Dimension } from "./dimension";
 import { Review } from "./review";
 
 export interface Product {
@@ -22,4 +21,10 @@ export interface Product {
     weight: number;
     returnPolicy: string;
     dimensions: Dimension;
+}
+
+interface Dimension {
+    width: number;
+    height: number;
+    depth: number;
 }

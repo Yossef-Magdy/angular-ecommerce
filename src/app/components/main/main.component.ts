@@ -1,6 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { Product } from '../../interface/product';
+import { ProductRequestService } from '../../services/product-request.service';
+import { CartService } from '../../services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -10,6 +13,19 @@ import { Product } from '../../interface/product';
   styleUrl: './main.component.css'
 })
 export class MainComponent {
-  @Input() categories!: string[];
-  @Input() productList!: Product[];
+  productList: Product[] = [];
+  productSub!: Subscription;
+  cartSub!: Subscription;
+  constructor(private productService: ProductRequestService, private cartService: CartService) {}
+
+  ngOnInit(){
+    this.productSub = this.productService.getProductList().subscribe((data: any) => this.productList = data.products);
+  }
+  addToCart() {
+
+  
+  }
+  ngOnDestroy() {
+    this.productSub.unsubscribe();
+  }
 }

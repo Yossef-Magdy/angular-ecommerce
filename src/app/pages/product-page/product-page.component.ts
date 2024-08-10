@@ -1,11 +1,12 @@
-import { Component, ViewChild, } from '@angular/core';
+import { Component, Inject, ViewChild, } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HeaderComponent } from '../../components/header/header.component';
 import { Product } from '../../interface/product';
-import products from '../../../../public/products.json';
 import { PriceDiscountPipe } from '../../pipe/price-discount.pipe';
 import { StarsComponent } from "../../components/stars/stars.component";
 import { ReviewItemComponent } from '../../components/review-item/review-item.component';
+import { ProductRequestService } from '../../services/product-request.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-page',
@@ -16,15 +17,29 @@ import { ReviewItemComponent } from '../../components/review-item/review-item.co
 })
 export class ProductPageComponent {
   id: number;
-  data: Product;
-  productList: Product[] = products;
+  data!: Product;
+  productSub!: Subscription;
+
   @ViewChild('itemCount') itemCount: any;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+    private productService: ProductRequestService) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.data = products.filter(e => e.id == this.id)[0];
   }
 
+  ngOnInit() {
+    this.productSub = this.productService.getProductWithId(this.id).subscribe((data: any) => {
+      this.data = data;
+    });
+  }
+
+  ngOnDestroy() {
+    this.productSub.unsubscribe();
+  }
+
+  addToCart() {
+    
+  }
 
   increase() {
     let count: number = Number(this.itemCount.nativeElement.innerText);
@@ -43,3 +58,5 @@ export class ProductPageComponent {
   }
 
 }
+
+

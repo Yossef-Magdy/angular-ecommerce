@@ -27,8 +27,8 @@
                 </span>
             </div>
             <div class="price-wrapper">
-                <span class="price m-0 fw-normal fs-3">{{data.price | priceDiscount : data.discountPercentage }}</span>
-                <span class="price m-0 fw-normal text-muted fs-6 text-decoration-line-through">{{data.price}}</span>
+                <span class="m-0 fw-normal fs-3">${{data.price | priceDiscount : data.discountPercentage }}</span>
+                <span class="m-0 fw-normal text-muted fs-6 text-decoration-line-through">${{data.price}}</span>
             </div>
             <hr class="hr" />
             <h5 class="text-uppercase">description</h5>
@@ -52,14 +52,14 @@
             @if (data.stock > 0) {
             <div class="qty-control">
                 <button class="btn bg-light" (click)="decrease()">&minus;</button>
-                <span class="bg-light" #itemCount>{{data.minimumOrderQuantity}}</span>
+                <span class="bg-light" #itemCount>1</span>
                 <button class="btn bg-light" (click)="increase()">&plus;</button>
             </div>
             <span class="ms-3 fw-light">Only <span class="fw-normal orange">{{data.stock}} items</span> left,don't miss it</span>
             }
             <div>
                 <button class="btn fw-light rounded-pill bg-dark text-light px-5 py-2 me-3 my-2">Buy Now</button>
-                <button class="btn fw-light rounded-pill border border-dark px-5 py-2 my-2">Add to Cart</button>
+                <button class="btn fw-light rounded-pill border border-dark px-5 py-2 my-2" (click)="addToCart()">Add to Cart</button>
             </div>
         </div>
     </div>
