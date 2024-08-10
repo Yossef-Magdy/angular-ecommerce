@@ -13,9 +13,6 @@
 .wrapper>button {
     transition: transform 300ms ease;
 }
-.card-price::before {
-    content: "$";
-}
 .stock {
     position: absolute;
     left: 1rem;

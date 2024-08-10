@@ -7,13 +7,13 @@
     <h2 class="mb-3">Our Products</h2>
     <div class="product-list">
         @for (product of productList; track product.id) {
-            <app-product-card [data] = "product"></app-product-card>
+            <app-product-card (productEmitter)="addToCart($event)" [data] = "product"></app-product-card>
         }
         @empty {
             <div class="spinner my-4">
                 <div class="spinner-border spinner p-3" role="status">
-                    <span class="visually-hidden">Loading...</span>
                 </div>
+                <span>Loading</span>
             </div>
         }
     </div>

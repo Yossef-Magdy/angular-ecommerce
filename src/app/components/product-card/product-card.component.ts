@@ -12,6 +12,7 @@ import { StarsComponent } from '../stars/stars.component';
 })
 export class ProductCardComponent {
   @Input() data!: Product;
+  @Output() productEmitter = new EventEmitter<Product>();
   @ViewChild('favoriteIcon') favoriteIconView: any;
   isFavorite: boolean = false;
   
@@ -22,6 +23,7 @@ export class ProductCardComponent {
   }
   addToCart(event: Event) {
     event.stopPropagation();
+    this.productEmitter.emit(this.data);
   }
   toggleFavorite(event: Event) {
     event.stopPropagation();

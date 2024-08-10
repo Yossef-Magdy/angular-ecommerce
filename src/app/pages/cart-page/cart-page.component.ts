@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { Subscription } from 'rxjs';
 import { Product } from '../../interface/product';
-import { ProductRequestService } from '../../services/product-request.service';
+import { CartService } from '../../services/cart-service';
+import { CartItem } from '../../interface/cart-item';
 
 @Component({
   selector: 'app-cart-page',
@@ -12,22 +13,47 @@ import { ProductRequestService } from '../../services/product-request.service';
   styleUrl: './cart-page.component.css'
 })
 export class CartPageComponent {
-  productList!: Product[];
-  productSub!: Subscription;
-  constructor(private productService: ProductRequestService){}
+  cart: CartItem[] = []
+  cartSub!: Subscription;
+  constructor(private cartService: CartService){}
   ngOnInit() {
-    this.productSub = this.productService.getProductList().subscribe((data: any) => {
-      this.productList = data.products
+    this.cartSub = this.cartService.getCart().subscribe((data: any) => {
+      this.cart = data;
+      console.log('cart', this.cart);
     });
   }
   ngOnDestroy() {
-    this.productSub.unsubscribe();
+    this.cartSub.unsubscribe();
   }
-  increaseCount(data: any) {
-
+  get subtotal(): number {
+    let sum = 0;
+    for (let el of this.cart) {
+      sum += el.product.price * el.count;
+    }
+    return Number(sum.toPrecision(4));
   }
-  decreaseCount(data: any) {
-
+  get discount(): number {
+    let sum = 0;
+    for (let el of this.cart) {
+      sum += el.product.price * el.product.discountPercentage * el.count / 100;
+    }
+    return Number(sum.toPrecision(4));
+  }
+  get total(): number {
+    return Number((this.subtotal - this.discount).toPrecision(4));
+  }
+  increaseCount(index: number) {
+    if (this.cart[index].count < this.cart[index].product.stock) {
+      this.cartService.changeCount(index, 1);
+    }
+  }
+  decreaseCount(index: number) {
+    if (this.cart[index].count > 0) {
+      this.cartService.changeCount(index, -1);
+    }
+  }
+  removeItem(index: number) {
+    this.cartService.removeItem(index);
   }
 }
 

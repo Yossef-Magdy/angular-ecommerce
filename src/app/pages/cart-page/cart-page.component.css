@@ -1,15 +1,8 @@
-/* .cart-list {
-    display: grid;
-    grid-template-columns: 15% 1fr 20% 10% 10%;
-    align-items: center;
+.cart-list {
+    display: flex;
     gap: 1rem;
 }
-.cart-list-title {
-    display: grid;
-    grid-template-columns: 1fr 20% 10% 10%;
-    align-items: center;
-    gap: 1rem;
-} */
+
 
 .cart-item {
     display: grid;
