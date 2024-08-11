@@ -6,7 +6,7 @@
     @if(cart.length > 0) {
         @for(cartItem of cart; track $index) {
             <div class="cart-list mb-3">
-                <div class="cart-item">
+                <div class="cart-item w-100">
                     <img src="{{cartItem.product.thumbnail}}" alt="" class="w-100 bg-light rounded">
                     <div class="d-flex flex-column justify-content-between">
                         <div>
