@@ -9,24 +9,33 @@ import { Product } from '../interface/product';
 export class CartService {
   private cart = new BehaviorSubject<CartItem[]>([]);
   constructor() { }
+  private get cartArray() {
+    return this.cart.value;
+  }
   getCart() {
     return this.cart.asObservable();
   }
   addToCart(product: Product, count: number) {
-    let index = this.cart.value.findIndex(e => e.product == product);
+    let index = this.cartArray.findIndex(e => e.product.id == product.id);
     if (index == -1) {
-      this.cart.value.push({
+      this.cartArray.push({
         product: product,
         count: count
       });
     } else {
-      this.cart.value[index].count += count;
+      this.increaseCount(index, count);
+    }
+  }
+  increaseCount(index: number, count: number) {
+    this.cartArray[index].count += count;
+    if (this.cartArray[index].count > this.cartArray[index].product.stock) {
+      this.cartArray[index].count = this.cartArray[index].product.stock;
     }
   }
   changeCount(index: number, value: number) {
-    this.cart.value[index].count += value;
+    this.increaseCount(index, value);
   }
   removeItem(index: number) {
-    this.cart.value.splice(index, 1);
+    this.cartArray.splice(index, 1);
   }
 }
